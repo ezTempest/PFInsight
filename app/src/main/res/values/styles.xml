@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="barraComfortaa" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:fontFamily">@font/comfortaa</item>
+    </style>
+    <style name="MyButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">@color/black</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">#FFFFFF</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/MyPositiveButton</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/MyNegativeButton</item>
+    </style>
+
+    <style name="MyPositiveButton" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="MyNegativeButton" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:textColor">#000000</item>
+    </style>
+</resources>
