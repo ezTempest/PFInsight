@@ -18,7 +18,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private Context context = null;
     public List<MyDocument> documents;
     public static MyDocument doc;
-
     public <E> MyRecyclerViewAdapter(List<MyDocument> es) {
 
         this.context = context;
@@ -27,6 +26,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         this.context = context; // Assuming you have a context member variable
         this.documents = data != null ? documents : new ArrayList<>(); // Provide default empty list if data is null
     }
+
 
     @NonNull
     @Override
@@ -57,6 +57,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return 0;
     }
 
+
     // 1. OnItemClickListener interface
     public interface OnItemClickListener {
         void onItemClick(MyDocument document);
@@ -80,7 +81,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         public ViewHolder(View itemView) {
             super(itemView);
-            nome = itemView.findViewById(R.id.nomeT);
+            nome = itemView.findViewById(R.id.tvmembro);
             desc = itemView.findViewById(R.id.dT);
             membros = itemView.findViewById(R.id.oM);
 

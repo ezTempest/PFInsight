@@ -1,7 +1,5 @@
 package com.example.pfinsight;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
@@ -17,9 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.viewmodel.CreationExtras;
-
-import com.google.android.gms.common.util.JsonUtils;
 
 public class turmaFragInfo extends Fragment {
     TextView nomeT, descT;
@@ -40,7 +35,7 @@ public class turmaFragInfo extends Fragment {
         if (doc == null) {
             System.out.println("ta nulo essa bosta");
         }
-        nomeT = view.findViewById(R.id.nomeT);
+        nomeT = view.findViewById(R.id.tvmembro);
         descT = view.findViewById(R.id.descT);
         hSeg = view.findViewById(R.id.hSeg);
         hTer = view.findViewById(R.id.hTer);
@@ -90,10 +85,10 @@ public class turmaFragInfo extends Fragment {
 
             @Override
             public void onClick(View view) {
-//                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-//                ClipData clip = ClipData.newPlainText("label", doc.getDocumentId());
-//                clipboard.setPrimaryClip(clip);
-//                Toast.makeText(getContext(), "Código de entrada copiado!", Toast.LENGTH_SHORT).show();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("label", doc.getDocumentId());
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getContext(), "Código de entrada copiado!", Toast.LENGTH_SHORT).show();
 
             }
         });

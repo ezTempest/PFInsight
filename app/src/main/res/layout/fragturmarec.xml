@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/fundodegrade"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:paddingBottom="16dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
         app:cardElevation="4dp">
 
         <TextView
-            android:id="@+id/nomeT"
+            android:id="@+id/tvmembro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa"
@@ -27,24 +28,10 @@
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="18dp"
-        app:cardElevation="4dp">
+        android:padding="16dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
 </LinearLayout>

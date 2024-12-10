@@ -26,7 +26,7 @@
         app:cardElevation="4dp">
 
         <TextView
-            android:id="@+id/nomeT"
+            android:id="@+id/tvmembro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/comfortaa"
