@@ -3,7 +3,6 @@ package com.example.pfinsight;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.text.InputType;
@@ -51,7 +50,7 @@ public class inicial extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton fab = findViewById(R.id.btnc);
+        FloatingActionButton fab = findViewById(R.id.btCriarForm);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,8 +170,8 @@ public class inicial extends AppCompatActivity implements
                                             });
                                     Toast.makeText(getApplicationContext(), "Tudo certo porra", Toast.LENGTH_SHORT).show();
                                 }
-                                // turma existe
                                 System.out.println("turma existe porra");
+
                             } else {
                                 Toast.makeText(getApplicationContext(), "Turma não encontrada.", Toast.LENGTH_SHORT).show();
                             }

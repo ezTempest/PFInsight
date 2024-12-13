@@ -13,6 +13,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class cadastro extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -27,6 +32,9 @@ public class cadastro extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Map<String, Object> user = new HashMap<>();
+
         nameLayout = findViewById(R.id.nameLayout);
         emailLayout = findViewById(R.id.emailLayout);
         passwordLayout = findViewById(R.id.passwordLayout);
@@ -59,13 +67,22 @@ public class cadastro extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(cadastro.this, "Cadastro feito com sucesso", Toast.LENGTH_SHORT).show();
-                                    // You can navigate to another activity here
+
+
                                 } else {
 
                                     Toast.makeText(cadastro.this, "Falha no cadastro, tente novamente", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
+                System.out.println("eu sei que ta chegando aqui krl");
+                user.put("nome", name);
+                user.put("email", email);
+                user.put("id", mAuth.getCurrentUser().getUid().toString());
+                db.collection("users").document(mAuth.getCurrentUser().getUid().toString()).set(user).addOnSuccessListener(documentReference -> {
+                    System.out.println("deu certo o input no bd ");
+                });
+
             }
         });
     }

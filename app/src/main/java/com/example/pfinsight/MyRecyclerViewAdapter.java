@@ -19,12 +19,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public List<MyDocument> documents;
     public static MyDocument doc;
     public <E> MyRecyclerViewAdapter(List<MyDocument> es) {
-
         this.context = context;
     }
+
     public MyRecyclerViewAdapter(Context context, List<String> data) {
-        this.context = context; // Assuming you have a context member variable
-        this.documents = data != null ? documents : new ArrayList<>(); // Provide default empty list if data is null
+        this.context = context;
+        this.documents = data != null ? documents : new ArrayList<>();
     }
 
 

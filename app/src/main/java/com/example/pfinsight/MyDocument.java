@@ -30,7 +30,7 @@ public class MyDocument {
     }
     //---------------------------------//---------------------------------//
     public String getNome(){
-        System.out.println(nome);
+
         return nome;
     }
     public void SetName(){
@@ -38,7 +38,6 @@ public class MyDocument {
     }
     //---------------------------------//---------------------------------//
     public String getDesc(){
-        System.out.println(desc);
         return desc;
     }
     public void setDesc(){

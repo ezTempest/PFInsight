@@ -135,16 +135,16 @@ public class cturma extends AppCompatActivity {
                 dataAula.put("sab", sab);
                 turmaData.put("dataAula", dataAula);
 
-                turmaData.put("materia", nome);
+                turmaData.put("nome", nome);
                 turmaData.put("desc", desc);
 
                 db.collection("turmas")
                         .document(documentId)
                         .set(turmaData)
                         .addOnSuccessListener(aVoid -> {
-                            Intent intent = new Intent(this, turma.class);
-                            startActivity(intent);
+                            Intent intent = new Intent(this, inicial.class);
                             Toast.makeText(this, "Turma criada com sucesso", Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
                         })
                         .addOnFailureListener(e -> {
                             Toast.makeText(this, "Erro ao criar turma", Toast.LENGTH_SHORT).show();

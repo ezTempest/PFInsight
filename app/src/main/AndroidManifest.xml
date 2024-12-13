@@ -37,16 +37,24 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"/>
-
+        <activity
+            android:name=".eformulario"
+            android:exported="false"/>
+        <activity
+            android:name=".rformulario"
+            android:exported="false"/>
+        <activity
+            android:name=".cformulario"
+            android:exported="false"/>
+        <activity
+            android:name=".FormularioRecyAdapter"
+            android:exported="true"/>
+        <activity
+            android:name=".resultadosForms"
+            android:exported="true"/>
         <activity
         android:name=".MyRecyclerViewAdapter"
         android:exported="true">
-
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
 
         <meta-data
