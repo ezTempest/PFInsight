@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class QuestaoRecyAdapter extends RecyclerView.Adapter<QuestaoRecyAdapter.ViewHolder> {
     private List<MyQuestao> questions;
-    private Map<String, Integer> answers = new HashMap<>(); // Store answers
+    private Map<String, Integer> answers = new HashMap<>();
 
     public QuestaoRecyAdapter(List<MyQuestao> questions) {
         this.questions = questions;
@@ -25,7 +25,7 @@ public class QuestaoRecyAdapter extends RecyclerView.Adapter<QuestaoRecyAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_pergunta, parent, false); // Replace with your item layout file
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_pergunta, parent, false);
         return new ViewHolder(view);
     }
 

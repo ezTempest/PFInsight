@@ -61,12 +61,12 @@ public class inicial extends AppCompatActivity implements
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(new ArrayList<>()); // Initialize with empty list
+        adapter = new MyRecyclerViewAdapter(new ArrayList<>());
 
 
         db = FirebaseFirestore.getInstance();
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid(); // Get current user ID
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         System.out.println(userId);
         db.collection("turmas")
                 .whereArrayContains("membros", userId)
@@ -76,7 +76,7 @@ public class inicial extends AppCompatActivity implements
                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                         MyDocument document = documentSnapshot.toObject(MyDocument.class);
 
-                        document.setDocumentId(documentSnapshot.getId()); // Set document ID
+                        document.setDocumentId(documentSnapshot.getId());
                         documents.add(document);
 
                     }
@@ -193,9 +193,7 @@ public class inicial extends AppCompatActivity implements
     }
     @Override
     public void onItemClick(MyDocument document) {
-        // Handle item click
         Intent intent = new Intent(this, turma.class);
-        // Pass data to the other activity if needed
         intent.putExtra("documentId", document.getDocumentId());
         startActivity(intent);
     }

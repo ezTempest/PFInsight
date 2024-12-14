@@ -15,7 +15,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 import java.util.Map;
 public class FormularioRecyAdapter extends RecyclerView.Adapter<FormularioRecyAdapter.ViewHolder>{
-    private static final String TAG = "tag";
 
     private List<Map<String, Object>> formDataList;
     private FirebaseFirestore db;
@@ -44,22 +43,17 @@ public class FormularioRecyAdapter extends RecyclerView.Adapter<FormularioRecyAd
             System.out.println("o formdata nao ta nulo");
         }
         holder.questionTextView.setText(formData.get("questao").toString());
-        // ... set other TextViews with data from formData
 
         holder.deleteButton.setOnClickListener(v -> {
-            // Get the document ID to delete
             String documentId = formData.get("idquestao").toString();
-            // Assuming you have stored the document ID in the data
             if (documentId == null) {
                 System.out.println("deletamento deletamento falhou");
-                //code to break the activity
                 return;
             }
             db.collection("form").document(documentId)
                     .delete()
                     .addOnSuccessListener(aVoid -> {
                         System.out.println("Aquele lá foi pro saco");
-                        // Update the RecyclerView after deletion
                         formDataList.remove(position);
                         notifyItemRemoved(position);
                     })

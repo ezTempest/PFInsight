@@ -21,14 +21,14 @@ public class cformulario extends AppCompatActivity {
 
 
     private EditText pergunta;
-    private EditText[] opcoes = new EditText[5]; // Array to hold alternative EditTexts
+    private EditText[] opcoes = new EditText[5];
     private Button criarQ, btnlimpar;
     private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actv_criarform); // Replace with your layout file
+        setContentView(R.layout.actv_criarform);
 
         db = FirebaseFirestore.getInstance();
 

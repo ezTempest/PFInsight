@@ -28,16 +28,15 @@ public class RecyclersFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragturmarec, container, false); // Replace with your layout file
+        View view = inflater.inflate(R.layout.fragturmarec, container, false);
         MyDocument doc = MyRecyclerViewAdapter.doc;
-        nomeprof = view.findViewById(R.id.tvmembro); // Replace with your TextView ID
-        membros = view.findViewById(R.id.recview); // Replace with your RecyclerView ID
+        nomeprof = view.findViewById(R.id.tvmembro);
+        membros = view.findViewById(R.id.recview);
 
         membros.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new recyclerviewmembros(new ArrayList<>()); // Initialize with an empty list
+        adapter = new recyclerviewmembros(new ArrayList<>());
         membros.setAdapter(adapter);
         
-        // Fetch data from Firestore
         FirebaseFirestore.getInstance().collection("turmas")
                 .document(doc.getDocumentId())
                 .get()
@@ -51,7 +50,7 @@ public class RecyclersFragment extends Fragment {
                             }else {
                                 System.out.println(membros.size());
                                 System.out.println(membros.get(1));
-                                nomeprof.setText(membros.get(0)); // Set first user ID to TextView
+                                nomeprof.setText(membros.get(0));
                                 adapter.updateData(membros.subList(1, membros.size()));
                             }
                         }

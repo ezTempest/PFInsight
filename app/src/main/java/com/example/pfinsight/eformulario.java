@@ -51,7 +51,7 @@ public class eformulario extends AppCompatActivity  {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
-        adapter = new FormularioRecyAdapter(new ArrayList<>(), db, this); // Pass db instance to adapter
+        adapter = new FormularioRecyAdapter(new ArrayList<>(), db, this);
         recyclerView.setAdapter(adapter);
 
 

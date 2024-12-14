@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 public class turma extends AppCompatActivity {
-    Fragment fragment1 = new Fragment(); // Replace with your fragment classes
+    Fragment fragment1 = new Fragment();
     Fragment fragment2 = new Fragment();
     Button bti, btm;
 

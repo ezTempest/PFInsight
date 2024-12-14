@@ -99,11 +99,12 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="272dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="298dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/comfortaa"
         android:text="Insight Project"
+        android:textAlignment="center"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

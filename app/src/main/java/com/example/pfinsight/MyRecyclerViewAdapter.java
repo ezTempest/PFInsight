@@ -58,20 +58,16 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
 
-    // 1. OnItemClickListener interface
     public interface OnItemClickListener {
         void onItemClick(MyDocument document);
     }
 
-    // 2. listener field
     private OnItemClickListener listener;
 
-    // 3. setOnItemClickListener method
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
 
-    // ... (other existing code: documents field, constructor, onCreateViewHolder, onBindViewHolder, getItemCount) ...
 
 
 
@@ -87,19 +83,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
 
             itemView.setOnClickListener(this);
-//                    v -> {
-//                int position = getAdapterPosition();
-//                if (listener != null && position != RecyclerView.NO_POSITION) {
-//                    listener.onItemClick(documents.get(position));
-//                }
-//            });
+
         }
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-            System.out.println("posição" + position);// Get the clicked item position
-            if (position != RecyclerView.NO_POSITION) { // Check if position is valid
-                // Get the data for the clicked item (e.g., from your data list)
+            System.out.println("posição" + position);
+            if (position != RecyclerView.NO_POSITION) {
                 MyDocument document = documents.get(position);
                 doc = document;
 

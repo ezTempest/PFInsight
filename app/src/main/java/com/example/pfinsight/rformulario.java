@@ -50,7 +50,7 @@ public class rformulario extends AppCompatActivity {
         db.collection("form").whereEqualTo("idturma", doc.getDocumentId()).get().addOnSuccessListener(queryDocumentSnapshots -> {
             List<MyQuestao> questions = new ArrayList<>();
             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                MyQuestao question = new MyQuestao(document.getId(), document.getString("questao"), document.getString("r1"), document.getString("r2"), document.getString("r3"), document.getString("r4"), document.getString("r5"), document.getString("resposta1"), document.getString("resposta2"), document.getString("resposta3"), document.getString("resposta4"), document.getString("resposta5"), document.getString("idturma"));
+                MyQuestao question = new MyQuestao(document.getId(), document.getString("questao"), document.getString("r1"), document.getString("r2"), document.getString("r3"), document.getString("r4"), document.getString("r5"), document.getString("respostas1"), document.getString("respostas2"), document.getString("respostas3"), document.getString("respostas4"), document.getString("respostas5"), document.getString("idturma"));
                 res1 = question.getRespostas1();
                 res2 = question.getRespostas2();
                 res3 = question.getRespostas3();
@@ -70,11 +70,16 @@ public class rformulario extends AppCompatActivity {
     private void submitAnswers() {
         Map<String, Integer> MapaResposta = adapter.getAnswers();
         System.out.println("fodase tudo ta dando certo");
+        System.out.println(res1);
+        System.out.println(res2);
+        System.out.println(res3);
+        System.out.println(res4);
+        System.out.println(res5);
         for (Map.Entry<String, Integer> ODAIR_LER : MapaResposta.entrySet()) {
             String docId = ODAIR_LER.getKey();
             int index = ODAIR_LER.getValue();
 
-            String campoDBsubs = "resposta" + index;
+            String campoDBsubs = "respostas" + index;
             int xunxo = 0;
             //gambiarra aumentar contador resposta
             if(index == 1){
@@ -102,7 +107,6 @@ public class rformulario extends AppCompatActivity {
                     })
                     .addOnFailureListener(e -> {
                         System.out.println("DEU ERRO NA ENTRADA DAS RESPOTA /RFORMULARIO");
-                        // Handle the error, e.g., display an error message
                     });
         }
 
