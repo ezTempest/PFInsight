@@ -49,8 +49,7 @@ public class turmaFragInfo extends Fragment {
         System.out.println(FirebaseAuth.getInstance().getCurrentUser().getUid());
         String id = FirebaseAuth.getInstance().getCurrentUser().getUid();
         System.out.println("teste teste "+id);
-        System.out.println("teste teste "+doc.getMembros().get(0));
-        if (id.equals(doc.getMembros().get(0))) {
+        if (id.equals(doc.getProfessor())) {
             BtEditTurma.setVisibility(View.VISIBLE);
             btCopCod.setVisibility(View.VISIBLE);
             btEditForm.setVisibility(View.VISIBLE);

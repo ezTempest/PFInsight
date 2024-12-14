@@ -11,11 +11,14 @@ public class MyDocument {
     private HashMap<String,String> dataAula;
     private ArrayList<String> membros;
 
+    private String professor;
+
     public MyDocument() {} //tem que estar aqui
 
 
-    public MyDocument(String documentId, String nome, String desc, HashMap<String,String> dataAula, ArrayList<String> membros) {
+    public MyDocument(String documentId, String nome, String professor, String desc, HashMap<String,String> dataAula, ArrayList<String> membros) {
         this.documentId = documentId;
+        this.professor = professor;
         this.nome = nome;
         this.desc = desc;
         this.dataAula = dataAula;
@@ -80,5 +83,13 @@ public class MyDocument {
     public String getMembrosNumero(){
         String n = String.valueOf(membros.size());
         return n;
+    }
+
+    public String getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(String professor) {
+        this.professor = professor;
     }
 }

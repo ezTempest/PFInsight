@@ -29,7 +29,7 @@ public class FormularioRecyAdapter extends RecyclerView.Adapter<FormularioRecyAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.recycler_item_formulario, parent, false); // Use context for inflation
+        View view = LayoutInflater.from(context).inflate(R.layout.recycler_item_formulario, parent, false);
         return new ViewHolder(view);
     }
 

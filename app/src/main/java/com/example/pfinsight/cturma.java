@@ -121,10 +121,12 @@ public class cturma extends AppCompatActivity {
                     sab = "00:00";
                 }
                 ArrayList<String> membros1 = new ArrayList<>();
-                membros1.add(FirebaseAuth.getInstance().getCurrentUser().getUid());
                 Map<String, Object> turmaData = new HashMap<>();
                 turmaData.put("membros", membros1);
 
+                String professor = new String();
+                professor = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                turmaData.put("professor", professor);
 
                 Map<String, Object> dataAula = new HashMap<>();
                 dataAula.put("seg", seg);

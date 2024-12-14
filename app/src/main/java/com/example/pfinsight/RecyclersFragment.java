@@ -1,6 +1,7 @@
 package com.example.pfinsight;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,26 +41,67 @@ public class RecyclersFragment extends Fragment {
         membros.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new recyclerviewmembros(new ArrayList<>());
         membros.setAdapter(adapter);
-        
+
         FirebaseFirestore.getInstance().collection("turmas")
                 .document(doc.getDocumentId())
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
+                        String professorId = documentSnapshot.getString("professor");
+                        if (professorId != null) {
+                            FirebaseFirestore.getInstance()
+                                    .collection("users")
+                                    .whereEqualTo("id", professorId)
+                                    .get()
+                                    .addOnSuccessListener(prof -> {
+                                        if (!prof.isEmpty()) {
+                                            DocumentSnapshot profDoc = prof.getDocuments().get(0);
+                                            nomeprof.setText(profDoc.getString("nome"));
+                                        }
+                                    });
+                        }
+
                         List<String> membros = (List<String>) documentSnapshot.get("membros");
                         if (membros != null && !membros.isEmpty()) {
-                            if(membros.size() == 1){
-                                nomeprof.setText(membros.get(0));
-                                Toast.makeText(getContext(), "Essa turma não possui alunos", Toast.LENGTH_SHORT).show();
-                            }else {
-                                nomeprof.setText(membros.get(0));
-                                adapter.updateData(membros.subList(1, membros.size()));
+                            ArrayList<String> usuarios = new ArrayList<>();
+
+                            int batchSize = 10;
+                            List<Task<QuerySnapshot>> tasks = new ArrayList<>();
+
+                            for (int i = 0; i < membros.size(); i += batchSize) {
+                                List<String> batch = membros.subList(i, Math.min(i + batchSize, membros.size()));
+                                Task<QuerySnapshot> task = FirebaseFirestore.getInstance()
+                                        .collection("users")
+                                        .whereIn("id", batch)
+                                        .get();
+                                tasks.add(task);
                             }
+
+                            Tasks.whenAllComplete(tasks)
+                                    .addOnSuccessListener(taskResults -> {
+                                        for (Task<?> task : taskResults) {
+                                            if (task.isSuccessful()) {
+                                                QuerySnapshot querySnapshot = (QuerySnapshot) task.getResult();
+                                                for (DocumentSnapshot user : querySnapshot.getDocuments()) {
+                                                    usuarios.add(user.getString("nome"));
+                                                }
+                                            }
+                                        }
+                                        if (!usuarios.isEmpty()) {
+                                            adapter.updateData(usuarios);
+                                        } else {
+                                            Toast.makeText(getContext(), "Essa turma não possui alunos", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        } else {
+                            Toast.makeText(getContext(), "Essa turma não possui membros.", Toast.LENGTH_SHORT).show();
                         }
+                    } else {
+                        Log.e("Firestore", "Document does not exist.");
                     }
                 })
                 .addOnFailureListener(e -> {
-                    System.out.println("erro grande pra caralho");
+                    Log.e("Firestore", "Error fetching turmas document: ", e);
                 });
 
 

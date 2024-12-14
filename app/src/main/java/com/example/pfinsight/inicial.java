@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -25,6 +27,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +36,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class inicial extends AppCompatActivity implements
         MyRecyclerViewAdapter.OnItemClickListener {
@@ -68,27 +72,37 @@ public class inicial extends AppCompatActivity implements
 
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         System.out.println(userId);
-        db.collection("turmas")
+        Task<QuerySnapshot> membrosQuery = db.collection("turmas")
                 .whereArrayContains("membros", userId)
-                .get()
-                .addOnSuccessListener(queryDocumentSnapshots -> {
-                    List<MyDocument> documents = new ArrayList<>();
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        MyDocument document = documentSnapshot.toObject(MyDocument.class);
+                .get();
 
-                        document.setDocumentId(documentSnapshot.getId());
-                        documents.add(document);
+        Task<QuerySnapshot> professorQuery = db.collection("turmas")
+                .whereEqualTo("professor", userId)
+                .get();
 
+        Tasks.whenAllSuccess(membrosQuery, professorQuery)
+                .addOnSuccessListener(tasks -> {
+                    Set<DocumentSnapshot> resultSet = new HashSet<>();
+
+                    QuerySnapshot membrosResult = (QuerySnapshot) tasks.get(0);
+                    resultSet.addAll(membrosResult.getDocuments());
+
+                    QuerySnapshot professorResult = (QuerySnapshot) tasks.get(1);
+                    resultSet.addAll(professorResult.getDocuments());
+
+                    List<MyDocument> results = new ArrayList<>();
+                    for (DocumentSnapshot doc: resultSet) {
+                        MyDocument document = doc.toObject(MyDocument.class);
+                        document.setDocumentId(doc.getId());
+                        results.add(document);
                     }
-                    MyRecyclerViewAdapter adapter = new MyRecyclerViewAdapter(documents);
+
+                    MyRecyclerViewAdapter adapter = new MyRecyclerViewAdapter(results);
                     recyclerView.setAdapter(adapter);
 
-                    adapter.documents = documents; // Update adapter's data
-                    adapter.notifyDataSetChanged(); // Refresh RecyclerView
+                    adapter.documents = results;
+                    adapter.notifyDataSetChanged();
                     System.out.println("teste do sucesso");
-                })
-                .addOnFailureListener(e -> {
-                    System.out.println("erro de merda");
                 });
     }
 

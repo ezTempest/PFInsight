@@ -68,6 +68,12 @@ public class cadastro extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(cadastro.this, "Cadastro feito com sucesso", Toast.LENGTH_SHORT).show();
+                                    user.put("nome", name);
+                                    user.put("email", email);
+                                    user.put("id", mAuth.getCurrentUser().getUid().toString());
+                                    db.collection("users").document(mAuth.getCurrentUser().getUid().toString()).set(user).addOnSuccessListener(documentReference -> {
+                                        System.out.println("deu certo o input no bd ");
+                                    });
                                     Intent intent = new Intent(cadastro.this, inicial.class);
                                     startActivity(intent);
 
@@ -78,12 +84,7 @@ public class cadastro extends AppCompatActivity {
                             }
                         });
                 System.out.println("eu sei que ta chegando aqui krl");
-                user.put("nome", name);
-                user.put("email", email);
-                user.put("id", mAuth.getCurrentUser().getUid().toString());
-                db.collection("users").document(mAuth.getCurrentUser().getUid().toString()).set(user).addOnSuccessListener(documentReference -> {
-                    System.out.println("deu certo o input no bd ");
-                });
+
 
             }
         });
