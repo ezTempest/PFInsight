@@ -30,13 +30,7 @@ public class turma extends AppCompatActivity {
 
         SharedViewModel viewModel = new ViewModelProvider(this).get(SharedViewModel.class);
 
-        // Access the selected object from the ViewModel
         MyDocument document = MyRecyclerViewAdapter.doc;
-        if (document != null) {
-            System.out.println("turmajava"+document.getNome()+" teste teste");
-        }else{
-            System.out.println("ta nulo turma.java");
-        }
 
 
         getSupportFragmentManager().beginTransaction()
@@ -45,12 +39,7 @@ public class turma extends AppCompatActivity {
                         turmaFragInfo())
                 .commit();
 
-//        private void trocarFrag(Fragment fragment) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.fragment_container, fragment) // Replace with your container ID
-//                    .addToBackStack(null) // Optional: Add to back stack for navigation
-//                    .commit();
-//        }
+
 
 
         bti.setOnClickListener(new View.OnClickListener() {

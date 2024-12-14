@@ -48,8 +48,6 @@ public class RecyclersFragment extends Fragment {
                                 nomeprof.setText(membros.get(0));
                                 Toast.makeText(getContext(), "Essa turma não possui alunos", Toast.LENGTH_SHORT).show();
                             }else {
-                                System.out.println(membros.size());
-                                System.out.println(membros.get(1));
                                 nomeprof.setText(membros.get(0));
                                 adapter.updateData(membros.subList(1, membros.size()));
                             }
@@ -59,6 +57,7 @@ public class RecyclersFragment extends Fragment {
                 .addOnFailureListener(e -> {
                     System.out.println("erro grande pra caralho");
                 });
+
 
         return view;
     }}

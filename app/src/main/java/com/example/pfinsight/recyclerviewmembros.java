@@ -8,11 +8,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.List;
 
 public class recyclerviewmembros extends RecyclerView.Adapter<recyclerviewmembros.ViewHolder> {
     private List<String> mem;
-
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public recyclerviewmembros(List<String> mem) {
         this.mem = mem;
@@ -21,8 +24,7 @@ public class recyclerviewmembros extends RecyclerView.Adapter<recyclerviewmembro
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // ... other code ...
-        // Create and return a ViewHolder for the second RecyclerView
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerviewmembros, parent, false);
         return new ViewHolder(view);
 
@@ -36,11 +38,7 @@ public class recyclerviewmembros extends RecyclerView.Adapter<recyclerviewmembro
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toggle CardView visibility in the second RecyclerView
 
-                // Optional: Update data and notify adapter if needed
-                // data.get(position).setVisible(!data.get(position).isVisible()); // Assuming your data model has a visibility property
-                // notifyItemChanged(position);
             }
         });
     }
@@ -54,15 +52,19 @@ public class recyclerviewmembros extends RecyclerView.Adapter<recyclerviewmembro
         return mem.size();
     }
 
-    // ... other code ...
+//    public void updateNomeItem(int position, String userName) {
+//        mem.get(position).setSmallText1(userName);
+//
+//        notifyItemChanged(position);
+//    }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // ... other code ...
         public TextView textView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.tvmembro); // Replace with your TextView ID
+            textView = itemView.findViewById(R.id.tvmembro);
         }
     }
 }
