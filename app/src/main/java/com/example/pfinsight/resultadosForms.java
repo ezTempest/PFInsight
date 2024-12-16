@@ -53,7 +53,6 @@ public class resultadosForms extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                //MyQuestao perg = document.toObject(MyQuestao.class);
                                 MyQuestao perg = new MyQuestao(document.getId(), document.getString("questao"), document.getString("r1"), document.getString("r2"), document.getString("r3"), document.getString("r4"), document.getString("r5"), document.getString("respostas1"), document.getString("respostas2"), document.getString("respostas3"), document.getString("respostas4"), document.getString("respostas5"), document.getString("idturma"));
                                 perg.setDocumentId(document.getId());
 
@@ -61,7 +60,7 @@ public class resultadosForms extends AppCompatActivity {
                             }
                             adapter.notifyDataSetChanged();
                         } else {
-                            Log.d("MainActivity", "Error getting documents: ", task.getException());
+                            System.out.println("ERRO");
                         }
                     }
                 });

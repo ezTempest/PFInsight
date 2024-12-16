@@ -44,9 +44,7 @@ public class cturma extends AppCompatActivity {
 
 
 
-       /* formathhmm formatter = new formathhmm(tempoSeg);
-        tempoSeg.addTextChangedListener(formatter);
-        tempoSeg.setFilters(new InputFilter[]{formatter});*/
+
 
 
 

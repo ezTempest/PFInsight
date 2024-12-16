@@ -106,25 +106,7 @@ public class inicial extends AppCompatActivity implements
                 });
     }
 
-/*    private void showAlertDialog() {
-        new AlertDialog.Builder(this)
-                .setTitle("Criar ou entrar em uma turma?")
-                .setMessage("Você deseja criar uma turma nova ou entrar em uma já existente?")
-                .setPositiveButton("Entrar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        showAlertDialogWithEditText();
-                    }
-                })
-                .setNegativeButton("Criar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(inicial.this, cturma.class);
-                        startActivity(intent);
-                    }
-                })
-                .show();
-    }*/
+
         private void showAlertDialog() {
             AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, R.style.MyAlertDialogStyle));
             builder.setTitle("Criar ou entrar em uma turma?")

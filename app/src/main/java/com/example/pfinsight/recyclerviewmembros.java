@@ -52,11 +52,7 @@ public class recyclerviewmembros extends RecyclerView.Adapter<recyclerviewmembro
         return mem.size();
     }
 
-//    public void updateNomeItem(int position, String userName) {
-//        mem.get(position).setSmallText1(userName);
-//
-//        notifyItemChanged(position);
-//    }
+
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

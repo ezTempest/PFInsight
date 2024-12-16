@@ -32,7 +32,7 @@ public class rformulario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actv_responderform); // Replace with your layout file
+        setContentView(R.layout.actv_responderform);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

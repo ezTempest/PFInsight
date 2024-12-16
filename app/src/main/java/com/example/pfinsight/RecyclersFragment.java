@@ -97,11 +97,11 @@ public class RecyclersFragment extends Fragment {
                             Toast.makeText(getContext(), "Essa turma não possui membros.", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        Log.e("Firestore", "Document does not exist.");
+                        System.out.println("ERRO");
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("Firestore", "Error fetching turmas document: ", e);
+                    System.out.println("ERRO 2");
                 });
 
 
