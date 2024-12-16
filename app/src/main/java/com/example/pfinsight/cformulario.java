@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class cformulario extends AppCompatActivity {
-    private static final String TAG = "CreateQuestionActivity";
+    private static final String TAG = "";
     MyDocument doc = MyRecyclerViewAdapter.doc;
 
 
