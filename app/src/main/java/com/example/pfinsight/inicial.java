@@ -164,7 +164,7 @@ public class inicial extends AppCompatActivity implements
                                                 public void onFailure(@NonNull Exception e) {
                                                     System.out.println("foi pro saco essa bosta peluda");                                                }
                                             });
-                                    Toast.makeText(getApplicationContext(), "Tudo certo porra", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Cadastro realizado com sucesso", Toast.LENGTH_SHORT).show();
                                 }
                                 System.out.println("turma existe porra");
 
@@ -178,7 +178,7 @@ public class inicial extends AppCompatActivity implements
             }
         });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
